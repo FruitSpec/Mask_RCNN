@@ -2528,7 +2528,7 @@ class MaskRCNN():
             log("anchors", anchors)
         # Run object detection
         detections, _, _, mrcnn_mask, _, _, _ =\
-            self.keras_model.predict([molded_images, image_metas, anchors], verbose=0)
+            self.keras_model([molded_images, image_metas, anchors], verbose=0)
         # release memory usage
         K.clear_session()
         # Process detections
@@ -2545,7 +2545,6 @@ class MaskRCNN():
                 "masks": final_masks,
             })
         return results
-
     def detect_molded(self, molded_images, image_metas, verbose=0):
         """Runs the detection pipeline, but expect inputs that are
         molded already. Used mostly for debugging and inspecting
