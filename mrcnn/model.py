@@ -2529,6 +2529,8 @@ class MaskRCNN():
         # Run object detection
         detections, _, _, mrcnn_mask, _, _, _ =\
             self.keras_model.predict([molded_images, image_metas, anchors], verbose=0)
+        # release memory usage
+        K.clear_session()
         # Process detections
         results = []
         for i, image in enumerate(images):
@@ -2542,8 +2544,6 @@ class MaskRCNN():
                 "scores": final_scores,
                 "masks": final_masks,
             })
-        # release memory usage
-        K.clear_session()
         return results
 
     def detect_molded(self, molded_images, image_metas, verbose=0):
