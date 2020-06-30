@@ -61,7 +61,7 @@ class Config(object):
 
     # The strides of each layer of the FPN Pyramid. These values
     # are based on a Resnet101 backbone.
-    BACKBONE_STRIDES = [16, 32, 64, 128, 256]
+    BACKBONE_STRIDES = [4, 8, 16, 32, 64]
 
     # Size of the fully-connected layers in the classification graph
     FPN_CLASSIF_FC_LAYERS_SIZE = 1024
@@ -77,7 +77,7 @@ class Config(object):
 
     # Ratios of anchors at each cell (width/height)
     # A value of 1 represents a square anchor, and 0.5 is a wide anchor
-    RPN_ANCHOR_RATIOS = [1, 1.5, 2, 3, 4]
+    RPN_ANCHOR_RATIOS = [0.5, 1, 2]
 
     # Anchor stride
     # If 1 then anchors are created for each cell in the backbone feature map.
@@ -93,7 +93,7 @@ class Config(object):
 
     # ROIs kept after non-maximum suppression (training and inference)
     POST_NMS_ROIS_TRAINING = 2000
-    POST_NMS_ROIS_INFERENCE = 8000
+    POST_NMS_ROIS_INFERENCE = 1000
 
     # If enabled, resizes instance masks to a smaller size to reduce
     # memory load. Recommended when using high-resolution images.
