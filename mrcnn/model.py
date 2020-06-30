@@ -2544,7 +2544,10 @@ class MaskRCNN():
                 "scores": final_scores,
                 "masks": final_masks,
             })
+        # release memory usage
+        K.clear_session()
         return results
+
     def detect_molded(self, molded_images, image_metas, verbose=0):
         """Runs the detection pipeline, but expect inputs that are
         molded already. Used mostly for debugging and inspecting
