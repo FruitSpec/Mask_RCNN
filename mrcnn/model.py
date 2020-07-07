@@ -2162,10 +2162,10 @@ class MaskRCNN():
         metrics. Then calls the Keras compile() function.
         """
         # Optimizer object
-        optimizer = keras.optimizers.SGD(
-            lr=learning_rate, momentum=momentum, decay=0.0001,
-            clipnorm=self.config.GRADIENT_CLIP_NORM)
-        # optimizer = keras.optimizers.Adam(lr=learning_rate, beta_1=0.9)
+        # optimizer = keras.optimizers.SGD(
+        #     lr=learning_rate, momentum=momentum, decay=0.0001,
+        #     clipnorm=self.config.GRADIENT_CLIP_NORM)
+        optimizer = keras.optimizers.Adam(lr=learning_rate, beta_1=0.9, beta_2=0.999, epsilon=1e-07)
         # Add Losses
         # First, clear previously set losses to avoid duplication
         self.keras_model._losses = []
@@ -2280,7 +2280,7 @@ class MaskRCNN():
         self.checkpoint_path = self.checkpoint_path.replace(
             "*epoch*", "{epoch:04d}")
 
-    def train(self, train_dataset, val_dataset, learning_rate, epochs, layers,
+    def     train(self, train_dataset, val_dataset, learning_rate, epochs, layers,
               augmentation=None, custom_callbacks=None, no_augmentation_sources=None):
         """Train the model.
         train_dataset, val_dataset: Training and validation Dataset objects.
@@ -2368,13 +2368,14 @@ class MaskRCNN():
         else:
             workers = multiprocessing.cpu_count()
 
+        #  manually changed validation_data to fetch next(val_generator)
         self.keras_model.fit_generator(
             train_generator,
             initial_epoch=self.epoch,
             epochs=epochs,
             steps_per_epoch=self.config.STEPS_PER_EPOCH,
             callbacks=callbacks,
-            validation_data=val_generator,
+            validation_data=next(val_generator),
             validation_steps=self.config.VALIDATION_STEPS,
             max_queue_size=100,
             workers=workers,
