@@ -61,7 +61,7 @@ class Config(object):
 
     # The strides of each layer of the FPN Pyramid. These values
     # are based on a Resnet101 backbone.
-    BACKBONE_STRIDES = [8, 16, 32, 64, 128]
+    BACKBONE_STRIDES = [4, 8, 16, 32, 64]
 
     # Size of the fully-connected layers in the classification graph
     FPN_CLASSIF_FC_LAYERS_SIZE = 1024
@@ -77,7 +77,7 @@ class Config(object):
 
     # Ratios of anchors at each cell (width/height)
     # A value of 1 represents a square anchor, and 0.5 is a wide anchor
-    RPN_ANCHOR_RATIOS = [1, 1.5, 2]
+    RPN_ANCHOR_RATIOS = [0.5, 1, 2]
 
     # Anchor stride
     # If 1 then anchors are created for each cell in the backbone feature map.
@@ -86,10 +86,10 @@ class Config(object):
 
     # Non-max suppression threshold to filter RPN proposals.
     # You can increase this during training to generate more propsals.
-    RPN_NMS_THRESHOLD = 0.9
+    RPN_NMS_THRESHOLD = 0.7
 
     # How many anchors per image to use for RPN training
-    RPN_TRAIN_ANCHORS_PER_IMAGE = 512
+    RPN_TRAIN_ANCHORS_PER_IMAGE = 256
 
     # ROIs kept after non-maximum suppression (training and inference)
     POST_NMS_ROIS_TRAINING = 2000
@@ -98,7 +98,7 @@ class Config(object):
     # If enabled, resizes instance masks to a smaller size to reduce
     # memory load. Recommended when using high-resolution images.
     USE_MINI_MASK = True
-    MINI_MASK_SHAPE = (14, 14)  # (height, width) of the mini-mask
+    MINI_MASK_SHAPE = (56, 56)  # (height, width) of the mini-mask
 
     # Input image resizing
     # Generally, use the "square" resizing mode for training and predicting
@@ -120,8 +120,8 @@ class Config(object):
     #         on IMAGE_MIN_DIM and IMAGE_MIN_SCALE, then picks a random crop of
     #         size IMAGE_MIN_DIM x IMAGE_MIN_DIM. Can be used in training only.
     #         IMAGE_MAX_DIM is not used in this mode.
-    IMAGE_RESIZE_MODE = "crop"
-    IMAGE_MIN_DIM = 256
+    IMAGE_RESIZE_MODE = "square"
+    IMAGE_MIN_DIM = 800
     IMAGE_MAX_DIM = 1024
     # Minimum scaling ratio. Checked after MIN_IMAGE_DIM and can force further
     # up scaling. For example, if set to 2 then images are scaled up to double
@@ -137,7 +137,7 @@ class Config(object):
     # enough positive proposals to fill this and keep a positive:negative
     # ratio of 1:3. You can increase the number of proposals by adjusting
     # the RPN NMS threshold.
-    TRAIN_ROIS_PER_IMAGE = 256
+    TRAIN_ROIS_PER_IMAGE = 200
 
     # Percent of positive ROIs used to train classifier/mask heads
     ROI_POSITIVE_RATIO = 0.33
