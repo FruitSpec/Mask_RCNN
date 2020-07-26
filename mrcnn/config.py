@@ -89,7 +89,7 @@ class Config(object):
     RPN_NMS_THRESHOLD = 0.7
 
     # How many anchors per image to use for RPN training
-    RPN_TRAIN_ANCHORS_PER_IMAGE = 256
+    RPN_TRAIN_ANCHORS_PER_IMAGE = 800
 
     # ROIs kept after non-maximum suppression (training and inference)
     POST_NMS_ROIS_TRAINING = 2000
@@ -120,14 +120,14 @@ class Config(object):
     #         on IMAGE_MIN_DIM and IMAGE_MIN_SCALE, then picks a random crop of
     #         size IMAGE_MIN_DIM x IMAGE_MIN_DIM. Can be used in training only.
     #         IMAGE_MAX_DIM is not used in this mode.
-    IMAGE_RESIZE_MODE = "square"
+    IMAGE_RESIZE_MODE = "crop"
     IMAGE_MIN_DIM = 800
     IMAGE_MAX_DIM = 1024
     # Minimum scaling ratio. Checked after MIN_IMAGE_DIM and can force further
     # up scaling. For example, if set to 2 then images are scaled up to double
     # the width and height, or more, even if MIN_IMAGE_DIM doesn't require it.
     # Howver, in 'square' mode, it can be overruled by IMAGE_MAX_DIM.
-    IMAGE_MIN_SCALE = 2
+    IMAGE_MIN_SCALE = 0
 
     # Image mean (RGB)
     MEAN_PIXEL = np.array([98.07, 90.15, 94.86])
