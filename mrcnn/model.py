@@ -2070,6 +2070,18 @@ class MaskRCNN():
 
         return model
 
+    def find_last(self, fruit_type):
+        """
+        :param fruit_type:
+        :return:
+        Finds the last checkpoint file of the last trained model in the
+        model directory, with respect to the fruit type.
+        Returns:
+            The path of the last checkpoint file
+        """
+        self.model_dir = os.path.join(self.model_dir, fruit_type)
+        return self.find_last()
+
     def find_last(self):
         """Finds the last checkpoint file of the last trained model in the
         model directory.
