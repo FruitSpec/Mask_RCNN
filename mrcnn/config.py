@@ -127,7 +127,7 @@ class Config(object):
     # up scaling. For example, if set to 2 then images are scaled up to double
     # the width and height, or more, even if MIN_IMAGE_DIM doesn't require it.
     # Howver, in 'square' mode, it can be overruled by IMAGE_MAX_DIM.
-    IMAGE_MIN_SCALE = 1
+    IMAGE_MIN_SCALE = 2
 
     # Image mean (RGB)
     MEAN_PIXEL = np.array([98.07, 90.15, 94.86])
