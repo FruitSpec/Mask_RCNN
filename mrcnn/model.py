@@ -2070,6 +2070,7 @@ class MaskRCNN():
 
         return model
 
+
     def find_last(self):
         """Finds the last checkpoint file of the last trained model in the
         model directory.
