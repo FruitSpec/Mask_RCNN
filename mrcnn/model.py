@@ -2542,6 +2542,8 @@ class MaskRCNN():
         # Run object detection
         detections, _, _, mrcnn_mask, _, _, _ =\
             self.keras_model.predict([molded_images, image_metas, anchors], verbose=0)
+        # clear session
+        K.clear_session()
         # Process detections
         results = []
         for i, image in enumerate(images):
