@@ -758,6 +758,9 @@ def compute_ap(gt_boxes, gt_class_ids, gt_masks,
     mAP = np.sum((recalls[indices] - recalls[indices - 1]) *
                  precisions[indices])
 
+
+
+
     return mAP, precisions, recalls, overlaps
 
 
