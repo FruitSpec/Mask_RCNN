@@ -2367,7 +2367,7 @@ class MaskRCNN():
         if os.name is 'nt':
             workers = 0
         else:
-            workers = multiprocessing.cpu_count()
+            workers = multiprocessing.cpu_count() 
 
         #  manually changed validation_data to fetch next(val_generator)
         self.keras_model.fit_generator(

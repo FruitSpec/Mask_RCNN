@@ -74,7 +74,7 @@ class Config(object):
 
     # Length of square anchor side in pixels
     RPN_ANCHOR_SCALES = (32, 64, 128, 256, 512)
-
+    # RPN_ANCHOR_SCALES = (8, 16, 32, 64, 128)
     # Ratios of anchors at each cell (width/height)
     # A value of 1 represents a square anchor, and 0.5 is a wide anchor
     RPN_ANCHOR_RATIOS = [0.5, 1, 2]
@@ -89,7 +89,7 @@ class Config(object):
     RPN_NMS_THRESHOLD = 0.7
 
     # How many anchors per image to use for RPN training
-    RPN_TRAIN_ANCHORS_PER_IMAGE = 256
+    RPN_TRAIN_ANCHORS_PER_IMAGE = 600
 
     # ROIs kept after non-maximum suppression (training and inference)
     POST_NMS_ROIS_TRAINING = 2000
@@ -121,7 +121,7 @@ class Config(object):
     #         size IMAGE_MIN_DIM x IMAGE_MIN_DIM. Can be used in training only.
     #         IMAGE_MAX_DIM is not used in this mode.
     IMAGE_RESIZE_MODE = "square"
-    IMAGE_MIN_DIM = 800
+    IMAGE_MIN_DIM = 1024
     IMAGE_MAX_DIM = 1024
     # Minimum scaling ratio. Checked after MIN_IMAGE_DIM and can force further
     # up scaling. For example, if set to 2 then images are scaled up to double
