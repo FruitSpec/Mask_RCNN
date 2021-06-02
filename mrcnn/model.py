@@ -2263,7 +2263,7 @@ class MaskRCNN():
         """
         # Set date and epoch counter as if starting a new model
         self.epoch = 0
-        now = datetime.datetime.now()
+        now = datetime.datetime.now(tz=timezone("Israel"))
 
         # If we have a model path with date and epochs use them
         if model_path:
