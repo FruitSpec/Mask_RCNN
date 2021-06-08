@@ -23,7 +23,6 @@ import keras.backend as K
 import keras.layers as KL
 import keras.engine as KE
 import keras.models as KM
-
 from mrcnn import utils
 
 # Requires TensorFlow 1.3+ and Keras 2.0.8+.
@@ -2263,7 +2262,7 @@ class MaskRCNN():
         """
         # Set date and epoch counter as if starting a new model
         self.epoch = 0
-        now = datetime.datetime.now(tz=timezone("Israel"))
+        now = datetime.datetime.now()
 
         # If we have a model path with date and epochs use them
         if model_path:
